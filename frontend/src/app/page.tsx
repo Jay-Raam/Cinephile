@@ -60,15 +60,15 @@ export default async function Home() {
         >
           <div className="details flex justify-center items-center flex-col lg:flex-row gap-3 max-w-[1200px] mx-auto my-0">
             <div className="me flex justify-center items-start flex-col gap-3">
-              <h1 className="text-3xl text-left underline-after">AboutUs</h1>
+              <h1 className="text-3xl text-left underline-after">About Us</h1>
               <p className="text-[1rem] text-center lg:text-left">
-                Hiii, I'm Jayasriraam, based in Chennai. I'm completing my
-                studies at GTN Arts College in 2023. Known for his extraordinary
-                passion for watching cinema, I spent my college days watching 3
-                or 4 movies per day, having viewed over 800 movies, 20 anime,
-                and 20 web series in my lifetime and still going. This extensive
-                movie-watching habit not only fuels his enthusiasm but also
-                influences my personal grooming.
+                Hiii, I&apos;m Jayasriraam, based in Chennai. I&apos;m
+                completing my studies at GTN Arts College in 2023. Known for his
+                extraordinary passion for watching cinema, I spent my college
+                days watching 3 or 4 movies per day, having viewed over 800
+                movies, 20 anime, and 20 web series in my lifetime and still
+                going. This extensive movie-watching habit not only fuels his
+                enthusiasm but also influences my personal grooming.
               </p>
               <p className="text-[1rem] text-center lg:text-left">
                 Movies provide a portal to explore our deepest emotions and
@@ -99,9 +99,13 @@ export default async function Home() {
                     key={movie._id}
                     className="flex justify-start items-center gap-3 flex-col w-[280px] md:flex-row"
                   >
-                    <img
+                    <Image
                       src={movie.image}
                       alt="movie poster"
+                      width={100}
+                      quality={100}
+                      layout="response"
+                      height={100}
                       className="w-[280px] md:w-[500px] h-auto hover:scale-105"
                     />
                   </li>
@@ -114,8 +118,8 @@ export default async function Home() {
         <section className="contact flex justify-center items-center gap-6 flex-col max-w-[1200px] mx-auto my-0 mt-20 mb-3">
           <h2 className="text-center text-3xl">Contact Us</h2>
           <p className="text-center">
-            If you have any questions, suggestions, or feedback, we'd love to
-            hear from you. Reach out to us using the contact form below.
+            If you have any questions, suggestions, or feedback, we&apos;d love
+            to hear from you. Reach out to us using the contact form below.
           </p>
           <div className="flex justify-center items-center flex-col-reverse lg:flex-row max-w-[1200px] mx-auto my-0">
             <ContactForm />
