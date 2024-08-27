@@ -6,16 +6,16 @@ import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 
+// Email validation function
 const validateEmail = (email: string): boolean => {
-  // Simple email validation regex
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
 };
 
+// Password validation function
 const validatePassword = (
   password: string
 ): { valid: boolean; error: string | null } => {
-  // Password must be at least 8 characters long and contain uppercase, lowercase, number, and special character
   const minLength = 8;
   const hasUppercase = /[A-Z]/.test(password);
   const hasLowercase = /[a-z]/.test(password);
@@ -25,28 +25,31 @@ const validatePassword = (
   if (password.length < minLength) {
     return {
       valid: false,
-      error: `Password must be at least ${minLength} characters long`,
+      error: `Password must be at least ${minLength} characters long.`,
     };
   }
   if (!hasUppercase) {
     return {
       valid: false,
-      error: "Password must contain at least one uppercase letter",
+      error: "Password must contain at least one uppercase letter.",
     };
   }
   if (!hasLowercase) {
     return {
       valid: false,
-      error: "Password must contain at least one lowercase letter",
+      error: "Password must contain at least one lowercase letter.",
     };
   }
   if (!hasNumber) {
-    return { valid: false, error: "Password must contain at least one number" };
+    return {
+      valid: false,
+      error: "Password must contain at least one number.",
+    };
   }
   if (!hasSpecialChar) {
     return {
       valid: false,
-      error: "Password must contain at least one special character",
+      error: "Password must contain at least one special character.",
     };
   }
 
@@ -65,14 +68,79 @@ const Register: React.FC = () => {
   const { toast } = useToast();
   const router = useRouter();
 
+  // Handle form submission
+  // const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   setLoading(true);
+  //   setError(null);
+
+  //   // Validate email
+  //   if (!validateEmail(email)) {
+  //     setEmailError("Invalid email format.");
+  //     setLoading(false);
+  //     return;
+  //   }
+  //   setEmailError(null);
+
+  //   // Validate password
+  //   const { valid, error: passwordValidationError } =
+  //     validatePassword(password);
+  //   if (!valid) {
+  //     setPasswordError(passwordValidationError);
+  //     setLoading(false);
+  //     return;
+  //   }
+  //   setPasswordError(null);
+
+  //   // Confirm passwords match
+  //   if (password !== confirmPassword) {
+  //     setError("Passwords do not match.");
+  //     setLoading(false);
+  //     return;
+  //   }
+
+  //   try {
+  //     // Send registration request
+  //     const response = await fetch("http://localhost:3001/register", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({ username, email, password }),
+  //     });
+
+  //     if (!response.ok) {
+  //       throw new Error("Registration failed");
+  //     }
+
+  //     const data = await response.json();
+  //     toast({
+  //       title: "Registration successful",
+  //       description: "You have been registered successfully.",
+  //       variant: "default",
+  //     });
+  //     router.push("/dashboard");
+  //   } catch (err) {
+  //     console.error("Registration failed:", err);
+  //     toast({
+  //       title: "Registration failed",
+  //       description: "Please try again later.",
+  //       variant: "destructive",
+  //     });
+  //     setError("Registration failed. Please try again later.");
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
 
-    // Basic validation
+    // Validate email
     if (!validateEmail(email)) {
-      setEmailError("Invalid email format");
+      setEmailError("Invalid email format.");
       setLoading(false);
       return;
     }
@@ -86,9 +154,9 @@ const Register: React.FC = () => {
       setLoading(false);
       return;
     }
-
     setPasswordError(null);
 
+    // Confirm passwords match
     if (password !== confirmPassword) {
       setError("Passwords do not match.");
       setLoading(false);
@@ -96,6 +164,7 @@ const Register: React.FC = () => {
     }
 
     try {
+      // Send registration request
       const response = await fetch(
         "https://cinephile-server-jay.vercel.app/register",
         {
@@ -107,11 +176,15 @@ const Register: React.FC = () => {
         }
       );
 
+      // Log response status and body for debugging
+      const responseBody = await response.text();
+      console.log("Response status:", response.status);
+      console.log("Response body:", responseBody);
+
       if (!response.ok) {
-        throw new Error("Registration failed");
+        throw new Error(responseBody || "Registration failed");
       }
 
-      const data = await response.json();
       toast({
         title: "Registration successful",
         description: "You have been registered successfully.",
@@ -122,69 +195,97 @@ const Register: React.FC = () => {
       console.error("Registration failed:", err);
       toast({
         title: "Registration failed",
-        description: "Please try again.",
+        description: "Please try again later.",
         variant: "destructive",
       });
-      setError("Registration failed. Please try again.");
+      setError("Registration failed. Please try again later.");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="form">
-      <h2 className="mb-7 text-3xl">Register</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <label htmlFor="username">Username</label>
+    <div className="form-container mx-auto my-8 p-6 max-w-md rounded-lg shadow-md">
+      <h2 className="mb-6 text-2xl font-semibold">Register</h2>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label
+            htmlFor="username"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Username
+          </label>
           <Input
             type="text"
             id="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
+            placeholder="Enter your username"
           />
         </div>
-        <div className="mb-4">
-          <label htmlFor="email">Email</label>
+        <div>
+          <label
+            htmlFor="email"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Email
+          </label>
           <Input
             type="email"
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            placeholder="Enter your email"
           />
-          {emailError && <p style={{ color: "red" }}>{emailError}</p>}
+          {emailError && (
+            <p className="text-red-500 text-sm mt-1">{emailError}</p>
+          )}
         </div>
-        <div className="mb-4">
-          <label htmlFor="password">Password</label>
+        <div>
+          <label
+            htmlFor="password"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Password
+          </label>
           <Input
             type="password"
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            placeholder="Enter your password"
           />
+          {passwordError && (
+            <p className="text-red-500 text-sm mt-1">{passwordError}</p>
+          )}
         </div>
-        <div className="mb-4">
-          <label htmlFor="confirmPassword">Confirm Password</label>
+        <div>
+          <label
+            htmlFor="confirmPassword"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Confirm Password
+          </label>
           <Input
             type="password"
             id="confirmPassword"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
+            placeholder="Confirm your password"
           />
-          {passwordError && <p style={{ color: "red" }}>{passwordError}</p>}
         </div>
+        {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
         <Button
           type="submit"
           disabled={loading}
-          className="w-[200px] rounded-full"
+          className="w-full max-w-xs rounded-full text-white"
         >
           {loading ? "Registering..." : "Register"}
         </Button>
-        {error && <p style={{ color: "red" }}>{error}</p>}
       </form>
     </div>
   );

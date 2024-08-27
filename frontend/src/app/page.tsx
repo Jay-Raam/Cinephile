@@ -102,10 +102,9 @@ export default async function Home() {
                     <Image
                       src={movie.image}
                       alt="movie poster"
-                      width={100}
+                      width={200}
                       quality={100}
-                      layout="response"
-                      height={100}
+                      height={200}
                       className="w-[280px] md:w-[500px] h-auto hover:scale-105"
                     />
                   </li>
