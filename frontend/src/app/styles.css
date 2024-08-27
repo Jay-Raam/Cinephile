@@ -1,0 +1,58 @@
+.underline-after::after {
+  content: "";
+  display: block;
+  height: 3px;
+  width: 45%;
+  border-radius: 2rem;
+  background-color: rgb(2, 2, 47);
+  margin-top: 8px;
+}
+
+/* From Uiverse.io by G4b413l */
+.pulsar {
+  --uib-size: 40px;
+  --uib-speed: 0.9s;
+  --uib-color: #cde41e;
+  position: relative;
+  left: 50%;
+  z-index: 1010;
+  height: var(--uib-size);
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  overflow-x: hidden;
+  width: var(--uib-size);
+}
+
+.pulsar::before,
+.pulsar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  background-color: var(--uib-color);
+  animation: pulse9173412 var(--uib-speed) ease-in-out infinite;
+  transform: scale(0);
+}
+
+.pulsar::after {
+  animation-delay: calc(var(--uib-speed) / -2);
+}
+
+@keyframes pulse9173412 {
+  0%,
+  100% {
+    transform: scale(0);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1);
+    opacity: 0.25;
+  }
+}
