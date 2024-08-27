@@ -24,9 +24,12 @@ export default async function Home() {
   let allFavorites: Movie[] = [];
 
   try {
-    const response = await fetch("http://localhost:3001/movies/favorites", {
-      cache: "no-cache",
-    });
+    const response = await fetch(
+      "https://cinephile-server-jay.vercel.app/movies/favorites",
+      {
+        cache: "no-cache",
+      }
+    );
 
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);

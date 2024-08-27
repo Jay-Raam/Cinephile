@@ -33,7 +33,9 @@ const CardImage: React.FC<MovieSearchProps> = ({ title }) => {
     setLoading(true);
     try {
       const response = await fetch(
-        `http://localhost:3001/movies?title=${encodeURIComponent(title)}`
+        `https://cinephile-server-jay.vercel.app/movies?title=${encodeURIComponent(
+          title
+        )}`
       );
       if (!response.ok) throw new Error("Network response was not ok");
       const data: FetchMoviesResponse = await response.json();
