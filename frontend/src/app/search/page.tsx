@@ -34,7 +34,7 @@ const MovieSearch: React.FC = () => {
     setError(null); // Clear previous error
     try {
       const response = await fetch(
-        `http://localhost:3001/movies?title=${encodeURIComponent(
+        `https://cinephile-server-jay.vercel.app/movies?title=${encodeURIComponent(
           title
         )}&page=${page}&limit=10`
       );
