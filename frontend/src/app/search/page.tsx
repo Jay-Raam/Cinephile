@@ -6,7 +6,6 @@ import MovieDetails from "@/components/MovieDetails";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import "../styles.css";
 
-// Define types for movie and API response
 interface Movie {
   _id: string;
   title: string;
@@ -21,7 +20,7 @@ interface FetchMoviesResponse {
 }
 
 const MovieSearch: React.FC = () => {
-  const [title, setTitle] = useState<string>("");
+  const [title, setTitle] = useState<string>("love");
   const [movies, setMovies] = useState<Movie[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);

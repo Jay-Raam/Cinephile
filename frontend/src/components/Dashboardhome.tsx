@@ -1,3 +1,6 @@
+"use client";
+
+import React, { useState, useEffect } from "react";
 import CartImage from "@/components/CardImage";
 import FavoriteCarousel from "@/components/FavoriteCarousel";
 
@@ -5,36 +8,36 @@ interface Movie {
   _id: string;
   image: string;
 }
-interface FavoriteMoviesState {
-  favorites: Movie[];
-  error: string | null;
-}
 
-const LandingHome = async (): Promise<JSX.Element> => {
-  let favorites: Movie[] = [];
-  let error: string | null = null;
+const LandingHome: React.FC = () => {
+  const [favorites, setFavorites] = useState<Movie[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
-  try {
-    const response = await fetch(
-      "https://cinephile-server-jay.vercel.app/movies/favorites",
-      {
-        cache: "force-cache",
+  useEffect(() => {
+    const loadFavorites = async () => {
+      try {
+        const response = await fetch(
+          "https://cinephile-server-jay.vercel.app/movies/favorites",
+          { cache: "force-cache" }
+        );
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data: Movie[] = await response.json();
+        setFavorites(data.slice(18, 25));
+      } catch (err) {
+        setError((err as Error).message);
       }
-    );
+    };
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
-    const data: Movie[] = await response.json();
-    favorites = data.slice(18, 25);
-  } catch (err) {
-    error = (err as Error).message;
-  }
+    loadFavorites();
+  }, []);
 
   return (
     <>
-      {error && <p>{error}</p>}
+      {error && <p className="text-center mt-3">{error}</p>}
       <FavoriteCarousel movies={favorites} />
 
       <div className="movie-list mt-5 flex justify-center items-center gap-4 flex-col pb-4">
@@ -59,7 +62,7 @@ const LandingHome = async (): Promise<JSX.Element> => {
         <h1 className="text-3xl">Romance</h1>
         <CartImage title="romance" />
       </div>
-      <div className="text-center py-4 bg-black text-white">
+      <div className="text-center py-4 bg-[#cde41e] text-black">
         <h1>
           <a href="https://jayasriraam.vercel.app/">Jayasriraam</a>
         </h1>

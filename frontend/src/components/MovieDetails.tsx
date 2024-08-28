@@ -82,7 +82,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({
 
       <div className="p-4">
         {/* Display Title and Year */}
-        <h1 className="text-2xl font-bold mb-2">{movie.title}</h1>
+        <h1 className="text-2xl font-bold mb-2 text-black">{movie.title}</h1>
         <p className="text-gray-600 mb-4">{`Year: ${movie.year}`}</p>
 
         {/* Display Extract */}
