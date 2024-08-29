@@ -29,21 +29,21 @@ import {
 // Daily work data
 const chartData = [
   { id: 1, name: "Searching New Job", value: 2, fill: "#3b82f6" },
-  { id: 2, name: "Clearing doubts", value: 0.5, fill: "#a78bfa" },
+  { id: 2, name: "Clearing doubts", value: 0.5, fill: "#713f12" },
   {
     id: 3,
     name: "Convert design to live - Task 1",
     value: 2.5,
     fill: "#4ade80",
   },
-  { id: 4, name: "Lunch break", value: 0.5, fill: "#fb923c" },
+  { id: 4, name: "Girlfriend time", value: 0.5, fill: "#fb923c" },
   {
     id: 5,
     name: "Convert design to live - Task 2",
     value: 2.5,
     fill: "#4ade80",
   },
-  { id: 6, name: "Read a book or blog", value: 0.5, fill: "#5eead4" },
+  { id: 6, name: "Read a book or blog", value: 0.5, fill: "#9f1239" },
   {
     id: 7,
     name: "Convert design to live - Task 3",
@@ -54,7 +54,7 @@ const chartData = [
     id: 8,
     name: "Bug fixing and enhancing code",
     value: 2,
-    fill: "#a78bfa",
+    fill: "#6d28d9",
   },
   {
     id: 9,
@@ -62,24 +62,36 @@ const chartData = [
     value: 1.5,
     fill: "#fef08a",
   },
+  {
+    id: 10,
+    name: "Sleeping",
+    value: 7,
+    fill: "#9d174d",
+  },
+  {
+    id: 10,
+    name: "Other Works",
+    value: 1.5,
+    fill: "#0c4a6e",
+  },
 ];
 
 // Chart configuration for daily tasks
 const chartConfig: any = {
   "Searching New Job": { label: "Searching New Job", color: "#3b82f6" },
-  "Clearing doubts": { label: "Clearing doubts", color: "#a78bfa" },
+  "Clearing doubts": { label: "Clearing doubts", color: "#713f12" },
   "Convert design to live - Task 1": {
     label: "Convert design to live - Task 1",
     color: "#4ade80",
   },
-  "Lunch break": { label: "Lunch break", color: "#fb923c" },
+  "Girlfriend time": { label: "Girlfriend time", color: "#fb923c" },
   "Convert design to live - Task 2": {
     label: "Convert design to live - Task 2",
     color: "#4ade80",
   },
   "Read a book or blog": {
     label: "Read a book or blog",
-    color: "#5eead4",
+    color: "#9f1239",
   },
   "Convert design to live - Task 3": {
     label: "Convert design to live - Task 3",
@@ -87,11 +99,19 @@ const chartConfig: any = {
   },
   "Bug-fixing-and-enhancing-code": {
     label: "Bug fixing and enhancing code",
-    color: "#a78bfa",
+    color: "#6d28d9",
   },
   "Watching movies or series": {
     label: "Watching movies or series",
     color: "#fef08a",
+  },
+  Sleeping: {
+    label: "Sleeping",
+    color: "#9d174d",
+  },
+  "Other Works": {
+    label: "Other Works",
+    color: "#0c4a6e",
   },
 };
 

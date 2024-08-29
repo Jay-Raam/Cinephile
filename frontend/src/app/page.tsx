@@ -62,12 +62,12 @@ export default async function Home() {
             <div className="me flex justify-center items-start flex-col gap-3">
               <h1 className="text-3xl text-left underline-after">About Us</h1>
               <p className="text-[1rem] text-center lg:text-left">
-                Hiii, I&apos;m Jayasriraam, based in Chennai. I&apos;m
-                completing my studies at GTN Arts College in 2023. Known for his
+                Hiii, I&apos;m Jayasriraam, based in Chennai. I&apos;m complete
+                my studies at GTN Arts College in 2023. Known for my
                 extraordinary passion for watching cinema, I spent my college
                 days watching 3 or 4 movies per day, having viewed over 800
                 movies, 20 anime, and 20 web series in my lifetime and still
-                going. This extensive movie-watching habit not only fuels his
+                going on. This extensive movie-watching habit not only fuels my
                 enthusiasm but also influences my personal grooming.
               </p>
               <p className="text-[1rem] text-center lg:text-left">
