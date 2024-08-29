@@ -53,7 +53,7 @@ Used industry-standard practices for password hashing and data encryption to saf
 Clone the project
 
 ```bash
-  https://github.com/Jay-Raam/Cinephile.git
+  git clone https://github.com/Jay-Raam/Cinephile.git
 ```
 
 Go to the project directory
